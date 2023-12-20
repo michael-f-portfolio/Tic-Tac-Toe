@@ -12,19 +12,22 @@
         <div class="font-size-xxl font-weight-bold">Tic Tac Toe</div>
     </header>
     <div class="game-container">
-        <div class="game-buttons">
-            <button class="font-size-lg" id="newGameButton">New Game</button>
+        <div class="game-display">
+            <div class="game-buttons">
+                <button class="font-size-lg" id="newGameButton">New Game</button>
+                <button class="font-size-lg" id="resetGameButton">Reset</button>
+            </div>
             <dialog id="newGameDialog">
                 <div class="new-game-container">
                     <div>
                         <div class="font-size-lg font-weight-semibold">Start a new game</div>
                         <div class="player-names-input">
                             <!-- <label for="playerOne">Player One Name (X):</label> -->
-                            <input type="text" name="player-one" id="playerOne" placeholder="Player 1 (X)">
+                            <input type="text" name="playerOne" id="playerOne" placeholder="Player 1 (X)" value="Player One" autocomplete="off">
                         </div>
                         <div class="player-names-input">
                             <!-- <label for="playerTwo">Player Two Name (O):</label> -->
-                            <input type="text" name="player-two" id="playerTwo" placeholder="Player 2 (O)">
+                            <input type="text" name="playerTwo" id="playerTwo" placeholder="Player 2 (O)" value="Player Two" autocomplete="off">
                         </div>
                         <div class="new-game-buttons">
                             <button class="font-size-sm" id="confirmNewGameButton">Start Game</button>
@@ -33,6 +36,14 @@
                     </div>
                 </div>
             </dialog>
+            <div class="player-display font-size-lg">
+                <div id="playerOneDisplay"></div>
+                <div id="versusText" hidden>vs</div>
+                <div id="playerTwoDisplay"></div>
+            </div>
+            <div class="message-display font-size-lg">
+
+            </div>
         </div>
         <div class="game-board">
             <div id="0:0"></div><div id="0:1"></div><div id="0:2"></div>

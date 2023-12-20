@@ -73,6 +73,7 @@ button {
     border: 2px solid var(--slate-600);
     border-radius: 10px;
     color: var(--slate-200);
+    width: 110px;
     padding: var(--spacing-xs) var(--spacing-md);
 }
 
@@ -139,14 +140,32 @@ footer img {
     gap: 30px;
 }
 
-.game-buttons {
+.game-display {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: var(--spacing-md);
     background-color: var(--slate-400);
-    width: 400px;
-    height: 100px;
+    width: 600px;
+    height: 250px;
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
+
+.game-buttons {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.game-buttons button {
+    width: 210px;
+}
+
+.player-display {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
 }
 
 /* Start New Game Dialog and Contained Elements */
@@ -218,11 +237,14 @@ dialog button {
 }
 
 .game-board > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: var(--slate-200);
     height: 150px;
     width: 150px;
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
-
+    font-size: 8rem;
 }
 
 .game-board > div:hover {
