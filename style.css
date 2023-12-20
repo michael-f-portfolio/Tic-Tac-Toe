@@ -250,3 +250,36 @@ dialog button {
 .game-board > div:hover {
     background-color: var(--slate-100);
 }
+
+@media screen and (max-width: 450px) {
+    .game-board {
+        width: 353px;
+        height: 353px;
+    }
+
+    .game-board > div {
+        height: 115px;
+        width: 115px;
+    }
+
+    .game-display {
+        width: 350px;
+        height: 200px;
+    }
+
+    .game-display button {
+        padding: var(--spacing-xs);
+        margin-left: var(--spacing-xs);
+        margin-right: var(--spacing-xs);
+        font-size: var(--font-size-md);
+    }
+
+    .player-display, .message-display {
+        font-size: var(--font-size-md);
+    }
+
+    .message-display {
+        font-weight: var(--font-weight-5);
+        text-decoration: underline;
+    }
+}
