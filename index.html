@@ -4,15 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tic Tac Toe</title>
-    <script src="script.js"></script>
-    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="style.css" >
 </head>
 <body>
     <header>
         <div class="font-size-xxl font-weight-bold">Tic Tac Toe</div>
     </header>
     <div class="game-container">
-        <div class="game-buttons"></div>
+        <div class="game-buttons">
+            <button class="font-size-lg" id="newGameButton">New Game</button>
+            <dialog id="newGameDialog">
+                <div class="new-game-container">
+                    <div>
+                        <div class="font-size-lg font-weight-semibold">Start a new game</div>
+                        <div class="player-names-input">
+                            <!-- <label for="playerOne">Player One Name (X):</label> -->
+                            <input type="text" name="player-one" id="playerOne" placeholder="Player 1 (X)">
+                        </div>
+                        <div class="player-names-input">
+                            <!-- <label for="playerTwo">Player Two Name (O):</label> -->
+                            <input type="text" name="player-two" id="playerTwo" placeholder="Player 2 (O)">
+                        </div>
+                        <div class="new-game-buttons">
+                            <button class="font-size-sm" id="confirmNewGameButton">Start Game</button>
+                            <button class="font-size-sm" id="cancelNewGameButton">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </dialog>
+        </div>
         <div class="game-board">
             <div id="0:0"></div><div id="0:1"></div><div id="0:2"></div>
             <div id="1:0"></div><div id="1:1"></div><div id="1:2"></div>

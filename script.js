@@ -131,4 +131,32 @@ const GameController = (() => {
     return {startGame};
 })();
 
-// GameController.startGame();
+const DisplayController = (() => {
+    const initializeDisplay = (gameController) => {
+        addEventsToDisplay();
+    };
+
+    function addEventsToDisplay() {
+        // Show Modal
+        const newGameDialogButton = document.querySelector("#newGameButton");
+        const newGameDialog = document.querySelector("#newGameDialog");
+        newGameDialogButton.addEventListener("click", () => newGameDialog.showModal());
+
+        // Hide Modal
+        const cancelNewGameButton = document.querySelector("#cancelNewGameButton");
+        const newGameContainerDiv = document.querySelector(".new-game-container");
+        cancelNewGameButton.addEventListener("click", () => newGameDialog.close());
+        newGameDialog.addEventListener("click", () => newGameDialog.close());
+        newGameContainerDiv.addEventListener("click", (event) => event.stopPropagation());
+
+        // Start Game
+        const confirmNewGameButton = document.querySelector("#confirmNewGameButton");
+        confirmNewGameButton.addEventListener("click", () => {
+
+        })
+    }
+
+    return {initializeDisplay};
+})();
+
+DisplayController.initializeDisplay();
