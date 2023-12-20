@@ -117,10 +117,11 @@ footer img {
     background-color: var(--slate-400);
     width: 400px;
     height: 100px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
 }
 
 .game-board {
-    background-color: var(--slate-700);
+    background-color: var(--slate-800);
     width: 459px;
     height: 459px;
     display: grid;
@@ -129,6 +130,7 @@ footer img {
     justify-content: center;
     grid-template-rows: 1fr 1fr 1fr;
     grid-template-columns: 1fr 1fr 1fr;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
 
 }
 
@@ -136,8 +138,10 @@ footer img {
     background-color: var(--slate-200);
     height: 150px;
     width: 150px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+
 }
 
 .game-board > div:hover {
-    background-color: var(--slate-300);
+    background-color: var(--slate-100);
 }
