@@ -1,29 +1,43 @@
-/*
-    GameBoard:
-        gameBoardArray: [[]]
-        displayGameBoard(): [][][]
-                            [][][]
-                            [][][]
-
-
-    Player:
-        name: string
-        marker: 'X' || 'O'
-        score: number
-*/
-
 const GameBoard = (() => {
-    const gameBoardArray = [
+    const consoleGameBoardArray = [
         [{marker: ""}, {marker: ""}, {marker: ""}],
         [{marker: ""}, {marker: ""}, {marker: ""}],
         [{marker: ""}, {marker: ""}, {marker: ""}]
     ];
 
+    const windowGameBoardArray = [
+        [{}, {}, {}],
+        [{}, {}, {}],
+        [{}, {}, {}]
+    ];
+
+    const createGameElement = (elementId) => {
+        const elementPosition = elementId;
+        const elementPlayer = PlayerFactory.createPlayer("empty", "empty");
+        const getElementPosition = () => elementPosition;
+        return {getElementPosition, elementPlayer};
+    }
+
+    const initializeGameBoard = () => {
+        let x = 0, y = 0;
+        windowGameBoardArray.forEach((row, yIndex) => {
+            y = yIndex;
+            row.forEach((cell, xIndex) => {
+                x = xIndex;
+                windowGameBoardArray[yIndex][xIndex] = createGameElement(`${y}:${x}`);
+            });
+        });
+    };
+
+    const windowMove = (player, position) => {
+
+    };
+
     const consoleDisplay = () => {
         let rowDisplay = "";
         let cellDisplay;
         let rowIndex = 1;
-        gameBoardArray.forEach(row => {
+        consoleGameBoardArray.forEach(row => {
             row.forEach(cell => {
                 cellDisplay = `[${cell.marker}]`
                 rowDisplay += cellDisplay;
@@ -34,65 +48,65 @@ const GameBoard = (() => {
         console.log("--------")
     };
 
-    const move = (player, row, column) => {
-        if (gameBoardArray[row][column].marker !== "") {
+    const consoleMove = (player, row, column) => {
+        if (consoleGameBoardArray[row][column].marker !== "") {
             throw Error(`Move already registered at that location`);
         } else {
-            gameBoardArray[row][column].marker = player.marker;
+            consoleGameBoardArray[row][column].marker = player.marker;
         }
     };
 
-    const hasWon = (player) => {
+    const consoleHasWon = (player) => {
         // check for row win
-        if (gameBoardArray[0][0].marker === player.marker &&
-            gameBoardArray[0][1].marker === player.marker &&
-            gameBoardArray[0][2].marker === player.marker) {
+        if (consoleGameBoardArray[0][0].marker === player.marker &&
+            consoleGameBoardArray[0][1].marker === player.marker &&
+            consoleGameBoardArray[0][2].marker === player.marker) {
             return true;
-        } else if (gameBoardArray[1][0].marker === player.marker &&
-                   gameBoardArray[1][1].marker === player.marker &&
-                   gameBoardArray[1][2].marker === player.marker) {
+        } else if (consoleGameBoardArray[1][0].marker === player.marker &&
+                   consoleGameBoardArray[1][1].marker === player.marker &&
+                   consoleGameBoardArray[1][2].marker === player.marker) {
             return true;
-        } else if (gameBoardArray[2][0].marker === player.marker &&
-                   gameBoardArray[2][1].marker === player.marker &&
-                   gameBoardArray[2][2].marker === player.marker) {
+        } else if (consoleGameBoardArray[2][0].marker === player.marker &&
+                   consoleGameBoardArray[2][1].marker === player.marker &&
+                   consoleGameBoardArray[2][2].marker === player.marker) {
             return true;
         }
         // check for column win
-        else if (gameBoardArray[0][0].marker === player.marker &&
-                 gameBoardArray[1][0].marker === player.marker &&
-                 gameBoardArray[2][0].marker === player.marker) {
+        else if (consoleGameBoardArray[0][0].marker === player.marker &&
+                 consoleGameBoardArray[1][0].marker === player.marker &&
+                 consoleGameBoardArray[2][0].marker === player.marker) {
             return true;
-        } else if (gameBoardArray[0][1].marker === player.marker &&
-                   gameBoardArray[1][1].marker === player.marker &&
-                   gameBoardArray[2][1].marker === player.marker) {
+        } else if (consoleGameBoardArray[0][1].marker === player.marker &&
+                   consoleGameBoardArray[1][1].marker === player.marker &&
+                   consoleGameBoardArray[2][1].marker === player.marker) {
             return true;
-        } else if (gameBoardArray[0][2].marker === player.marker &&
-                   gameBoardArray[1][2].marker === player.marker &&
-                   gameBoardArray[2][2].marker === player.marker) {
+        } else if (consoleGameBoardArray[0][2].marker === player.marker &&
+                   consoleGameBoardArray[1][2].marker === player.marker &&
+                   consoleGameBoardArray[2][2].marker === player.marker) {
             return true;
         }
         // check for diagonal win
-        else if (gameBoardArray[0][0].marker === player.marker &&
-                 gameBoardArray[1][1].marker === player.marker &&
-                 gameBoardArray[2][2].marker === player.marker) {
+        else if (consoleGameBoardArray[0][0].marker === player.marker &&
+                 consoleGameBoardArray[1][1].marker === player.marker &&
+                 consoleGameBoardArray[2][2].marker === player.marker) {
             return true;
-        } else if (gameBoardArray[0][2].marker === player.marker &&
-                   gameBoardArray[1][1].marker === player.marker &&
-                   gameBoardArray[2][0].marker === player.marker) {
+        } else if (consoleGameBoardArray[0][2].marker === player.marker &&
+                   consoleGameBoardArray[1][1].marker === player.marker &&
+                   consoleGameBoardArray[2][0].marker === player.marker) {
             return true;
         } else {
             return false;
         }
     };
 
-    return {consoleDisplay, move, hasWon};
+    return {initializeGameBoard, windowMove, consoleDisplay, consoleMove, consoleHasWon};
 })();
 
 const PlayerFactory = (() => {
     const createPlayer = (name, marker) => {
-        if (marker !== "x" && marker !== "o") {
-            throw Error(`$Invalid Marker: Must be "x" or "o" but was "${marker}"`);
-        }
+        // if (marker !== "x" && marker !== "o") {
+        //     throw Error(`$Invalid Marker: Must be "x" or "o" but was "${marker}"`);
+        // }
         return {name, marker};
     };
 
@@ -100,9 +114,8 @@ const PlayerFactory = (() => {
 })();
 
 const GameController = (() => {
-    const startGame = () => {
-        const player1 = PlayerFactory.createPlayer("bob", "x");
-        const player2 = PlayerFactory.createPlayer("joe", "o");
+    let player1, player2, currentPlayer;
+    const initializeConsoleGame = (player1, player2) => {
         let currentPlayer = player1;
         let row, column;
         let hasWon = false;
@@ -110,9 +123,9 @@ const GameController = (() => {
             row = parseInt(prompt(`${currentPlayer.name}'s move, which row?`));
             column = parseInt(prompt(`${currentPlayer.name}'s move, which column?`));
             try {
-                GameBoard.move(currentPlayer, row, column);
+                GameBoard.consoleMove(currentPlayer, row, column);
                 GameBoard.consoleDisplay();
-                if (GameBoard.hasWon(currentPlayer)) {
+                if (GameBoard.consoleHasWon(currentPlayer)) {
                     hasWon = true;
                 } else {
                     if (currentPlayer.marker === player1.marker) {
@@ -128,15 +141,32 @@ const GameController = (() => {
         alert(`${currentPlayer.name} has won!`);
     }
 
-    return {startGame};
+    const initializeWindowGame = (player1Name, player2Name) => {
+        console.log("game started");
+        player1 = PlayerFactory.createPlayer(player1Name, "x");
+        player2 = PlayerFactory.createPlayer(player2Name, "o");
+        currentPlayer = player1;
+        GameBoard.initializeGameBoard();
+    };
+
+    const playerMove = (elementPosition) => {
+        GameBoard.windowMove(currentPlayer, elementPosition);
+        if (currentPlayer.marker === "x") {
+            currentPlayer = player2;
+        } else {
+            currentPlayer = player1;
+        }
+    }
+
+    return {initializeConsoleGame, initializeWindowGame, playerMove};
 })();
 
 const DisplayController = (() => {
-    const initializeDisplay = (gameController) => {
-        addEventsToDisplay();
+    const initializeDisplay = () => {
+        addModalEvents();
     };
 
-    function addEventsToDisplay() {
+    function addModalEvents() {
         // Show Modal
         const newGameDialogButton = document.querySelector("#newGameButton");
         const newGameDialog = document.querySelector("#newGameDialog");
@@ -152,8 +182,24 @@ const DisplayController = (() => {
         // Start Game
         const confirmNewGameButton = document.querySelector("#confirmNewGameButton");
         confirmNewGameButton.addEventListener("click", () => {
+            const player1Name = document.querySelector("#playerOne");
+            const player2Name = document.querySelector("#playerTwo");
+            GameController.initializeWindowGame(player1Name.value, player2Name.value);
+            addGameBoardEvents();
+            player1Name.value = "";
+            player2Name.value = "";
+            newGameDialog.close();
+        });
+    }
 
-        })
+    function addGameBoardEvents() {
+        const gameBoardElements = document.querySelectorAll(".game-board div");
+        gameBoardElements.forEach(gameBoardElement => {
+           gameBoardElement.addEventListener("click", (event) => {
+                console.log(event);
+                GameController.playerMove(event.target.id);
+           });
+        });
     }
 
     return {initializeDisplay};
